@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 app.get('/', function(req, res){
-    var ip = req.connection.remoteAddress;
+    var ip = req.headers['x-forwarded-for'];
     var language = req.acceptedLanguages[0];
     var browser = getBrowser(req.headers['user-agent']);
     res.end(JSON.stringify({'ip':ip, 'language':language, 'browser':browser}));
